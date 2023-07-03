@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -15,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.gmailcloneandroid.components.GmailDrawerMenu
 import com.example.gmailcloneandroid.components.HomeAppBar
 import com.example.gmailcloneandroid.components.HomeBottomMenu
+import com.example.gmailcloneandroid.components.MailList
 import com.example.gmailcloneandroid.ui.theme.GmailCloneAndroidTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,23 +39,29 @@ fun GmailApp() {
     val coroutineScope = rememberCoroutineScope()
     val scrollState = rememberScrollState()
     Scaffold(scaffoldState = scaffoldState,
-        topBar ={
+        topBar = {
             HomeAppBar(scaffoldState,coroutineScope)
         },
         drawerContent = {
             GmailDrawerMenu(scrollState = scrollState)
         },
-        //Todo 1 add a bottomBar with empty lambda
         bottomBar = {
-            //Todo 3: call home bottom menu composable
             HomeBottomMenu()
-        })
-    {
+        }){
+        it
+        /**Todo 1: add lazy column with items that accept count
+         * Then pass in a Text and a Divider
+         */
+       /* LazyColumn{
+            items(50){ index->
+             Text(text = "Index @ $index")
+                Divider()
+            }
+        }*/
+//Todo 16: add the padding value the scaffold emits to the mailList
+        MailList(it)
     }
-
-
 }
-
 
 @Preview(showBackground = true)
 @Composable

@@ -5,10 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
@@ -22,10 +19,12 @@ import androidx.compose.ui.unit.dp
 import com.example.gmailcloneandroid.GmailApp
 import com.example.gmailcloneandroid.R
 import com.example.gmailcloneandroid.ui.theme.GmailCloneAndroidTheme
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 //Todo 4: create HomeAppBar composable and add a Box with Card element
 @Composable
-fun HomeAppBar(scaffoldState: Any, coroutineScope: Any) {
+fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope) {
     Box(modifier = Modifier.padding(10.dp)) {
         //Todo 5: add rounded corner with an elevation attribute
         Card(modifier = Modifier.requiredHeight(50.dp),
@@ -40,7 +39,9 @@ fun HomeAppBar(scaffoldState: Any, coroutineScope: Any) {
                  *
                  */
                 IconButton(onClick = {
-
+                    scope.launch{
+                        scaffoldState.drawerState.open()
+                    }
                 }) {
                     Icon(Icons.Default.Menu, "Menu")
                 }
