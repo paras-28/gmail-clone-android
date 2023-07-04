@@ -13,10 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.gmailcloneandroid.components.GmailDrawerMenu
-import com.example.gmailcloneandroid.components.HomeAppBar
-import com.example.gmailcloneandroid.components.HomeBottomMenu
-import com.example.gmailcloneandroid.components.MailList
+import com.example.gmailcloneandroid.components.*
 import com.example.gmailcloneandroid.ui.theme.GmailCloneAndroidTheme
 
 class MainActivity : ComponentActivity() {
@@ -47,7 +44,12 @@ fun GmailApp() {
         },
         bottomBar = {
             HomeBottomMenu()
-        }){
+        },
+        floatingActionButton = {
+            //Todo 8: pass in the scrollstate value from the remember scroll state to GmailFab and MailList
+            GmailFab(scrollState)
+        }
+        ){
         it
         /**Todo 1: add lazy column with items that accept count
          * Then pass in a Text and a Divider
@@ -59,7 +61,7 @@ fun GmailApp() {
             }
         }*/
 //Todo 16: add the padding value the scaffold emits to the mailList
-        MailList(it)
+        MailList(it ,scrollState)
     }
 }
 

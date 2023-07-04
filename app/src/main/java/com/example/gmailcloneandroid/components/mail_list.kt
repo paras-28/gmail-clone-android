@@ -31,7 +31,7 @@ import com.example.gmailcloneandroid.model.MailData
 //Todo 3: create a new file and a compose function
 //Todo 15: create a padding value variable and pass into Box as a padding
 @Composable
-fun MailList(paddingValues: PaddingValues) {
+fun MailList(paddingValues: PaddingValues,scrollState: ScrollState) {
     /**Todo 13 Add a Box and a lazy column, call its items
      *   that accepts a list and pass in the mailList we created
      *   Call MailItem and pass in the data the items emits
@@ -41,7 +41,7 @@ fun MailList(paddingValues: PaddingValues) {
         //Todo 14 add a modifier with fillMaxSize and padding of 16dp
         LazyColumn(modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)){
+            .padding(16.dp).scrollable(scrollState,Orientation.Vertical)){
             items(mailList){ mailData->
                 MailItem(mailData = mailData)
             }
